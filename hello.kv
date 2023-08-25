@@ -1,0 +1,65 @@
+#:kivy 2.2.1
+
+<ContourImageWidget>:
+	image: img
+	sldr: slider
+	BoxLayout:
+		orientation: 'vertical'
+		BoxLayout:
+			orientation: 'horizontal'
+			size_hint: 1, 0.8
+			Image:
+				id: img
+				nocache: True
+				source: 'samplepic2.png'
+				size: self.texture_size
+				size_hint: 0.8, 1
+			BoxLayout:
+				orientation: 'vertical'
+				size_hint: 0.2, 1
+				Slider:
+					size_hint: 0.8, 1
+					id: slider
+					min: 0
+					max: 100
+					step: 1
+					orientation: 'vertical'
+					value_track: True
+					value_track_color: [0.65, 0, 0.65, 1]
+					#on_value: root.drawconts()
+				Label:
+					size_hint: 0.2, 1
+					text: str(slider.value)[:4]
+		BoxLayout:
+			orientation: 'horizontal'
+			size_hint: 1, 0.2
+			Button:
+				text: 'camea'
+				on_press:
+					root.manager.transition.direction = 'right'
+					root.manager.current = 'cam'
+			Button:
+				text: 'draw contours'
+				on_press: root.drawconts()
+			Button:
+				text: 'button3'
+<CameraWidget>:
+	BoxLayout:
+		orientation: 'vertical'
+		Camera:
+			id: camera
+			resolution: (640, 480)
+			play: False
+		BoxLayout:
+			orientation: 'horizontal'
+			Button:
+				text: 'open camera'
+				on_press: camera.play = not camera.play
+			Button:
+				text: 'take picture'
+				on_press: root.capture()
+			Button:
+				text: 'to contours'
+				on_press:
+					root.manager.transition.direction = 'left'
+					root.manager.current = 'cont'
