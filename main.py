@@ -38,7 +38,7 @@ class CameraWidget(Screen):
         #Clock.schedule_once(self.cappic, 5)
         camera = self.ids['camera']
         #filename = settings_path + 'captured_image.png'
-        camera.export_to_png(./captured_image.png')
+        camera.export_to_png('./captured_image.png')
         Logger.info('CamPr: Picture hopefully taken.')
 
         #texture = self.cameraObject.texture
