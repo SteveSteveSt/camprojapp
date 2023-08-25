@@ -63,7 +63,7 @@ class ContourImageWidget(Screen):
         except: 
             try:
                 imc = cv.imread(cv.samples.findFile('./captured_image.png'))
-                except:
+            except:
                     Logger.info('CamPr: Epic Fail.')
             else:
                 Logger.info('CamPr: Dot Slash')
